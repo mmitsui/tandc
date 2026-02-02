@@ -200,11 +200,17 @@ class Concession(BaseModel):
 ### Phase 1: Foundation (Weeks 1-2)
 **Goal:** Working backend that can analyze YouTube and OpenAI ToS
 
-- [ ] **Project Setup**
-  - Initialize FastAPI project with proper structure
-  - Set up PostgreSQL database with SQLAlchemy
-  - Configure Redis for caching
-  - Set up development environment (Docker Compose)
+- [x] **Project Setup**
+  - ✅ Initialize FastAPI project with proper structure
+  - ✅ Set up PostgreSQL database with SQLAlchemy
+  - ✅ Configure Redis for caching
+  - ✅ Set up development environment (Docker Compose)
+  - ✅ Create initial Alembic migration for database schema
+  - ✅ Implement comprehensive unit tests for:
+    - Database models and operations
+    - Redis caching operations
+    - Application startup and health checks
+    - API endpoints and dependencies
 
 - [ ] **Document Extraction Service**
   - Implement Playwright-based scraper for dynamic pages
@@ -479,6 +485,37 @@ cd extension
 npm install
 npm run dev
 # Load unpacked extension from extension/dist in Chrome
+```
+
+### Database Migrations
+
+```bash
+# Run migrations
+cd backend
+alembic upgrade head
+
+# Create a new migration
+alembic revision --autogenerate -m "Description of changes"
+
+# Rollback last migration
+alembic downgrade -1
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+cd backend
+pytest
+
+# Run with coverage
+pytest --cov=app --cov-report=html
+
+# Run specific test file
+pytest tests/test_models.py
+
+# Run with verbose output
+pytest -v
 ```
 
 ---
